@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الأخبار | ZOC</title>
+  <script>
+    (function(){
+      var t = localStorage.getItem('zoc-theme');
+      if(t === 'dark') document.documentElement.setAttribute('data-theme','dark');
+    })();
+  </script>
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/news.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html" aria-label="شركة الزويتينة للنفط">
+    <img src="https://www.zueitina.com.ly/images/logo-en.png" alt="Zueitina Oil Company logo">
+    <span>
+      <strong>شركة الزويتينة للنفط</strong>
+      <small>Zueitina Oil Company</small>
+    </span>
+  </a>
+  <nav class="main-nav" aria-label="القائمة الرئيسية">
+    <a href="../index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+    <a href="../index.html#about" data-ar="من نحن" data-en="About Us">من نحن</a>
+    <a href="port.html" data-ar="الميناء" data-en="Port">الميناء</a>
+    <a href="flights.html" data-ar="دليل الرحلات" data-en="Flights">دليل الرحلات</a>
+    <a href="projects.html" data-ar="المشاريع" data-en="Projects">المشاريع</a>
+    <a href="news.html" data-ar="الأخبار" data-en="News">الأخبار</a>
+    <a href="login.html" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</a>
+  </nav>
+  <div class="header-controls">
+    <button class="theme-toggle" aria-label="تفعيل الوضع الداكن" title="Dark mode"></button>
+    <button class="lang-toggle" aria-label="Switch to English">EN</button>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="breadcrumbs"><a href="../index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a><span>/</span><span data-ar="الأخبار" data-en="News">الأخبار</span></div>
+    <p class="eyebrow" data-ar="الأخبار" data-en="News">الأخبار</p>
+    <h1 data-ar="آخر أخبار شركة الزويتينة" data-en="Latest Zueitina Oil Company News">آخر أخبار شركة الزويتينة</h1>
+    <p data-ar="تضم هذه الصفحة أخبار الصفحة الرئيسية نفسها، وزدت عليها أخباراً حديثة من الموقع الرسمي مع بحث وفلترة ومفضلة."
+       data-en="This page includes the same homepage news plus additional official-site news, with search, filters and bookmarks.">تضم هذه الصفحة أخبار الصفحة الرئيسية نفسها، وزدت عليها أخباراً حديثة من الموقع الرسمي مع بحث وفلترة ومفضلة.</p>
+  </section>
+
+  <section class="news-controls" aria-label="News controls">
+    <div class="search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+      <input id="news-search" class="search-input" type="search" placeholder="ابحث في الأخبار" data-placeholder-ar="ابحث في الأخبار" data-placeholder-en="Search news">
+    </div>
+    <div class="filter-group" role="group" aria-label="Filter news">
+      <button class="filter-btn active" data-filter="all" data-ar="الكل" data-en="All">الكل</button>
+      <button class="filter-btn" data-filter="corporate" data-ar="الشركة" data-en="Corporate">الشركة</button>
+      <button class="filter-btn" data-filter="operations" data-ar="العمليات" data-en="Operations">العمليات</button>
+      <button class="filter-btn" data-filter="projects" data-ar="المشاريع" data-en="Projects">المشاريع</button>
+      <button class="filter-btn" data-filter="hse" data-ar="السلامة" data-en="HSE">السلامة</button>
+      <button class="filter-btn" data-filter="tenders" data-ar="العطاءات" data-en="Tenders">العطاءات</button>
+    </div>
+    <select id="news-sort" class="sort-select" aria-label="Sort news">
+      <option value="newest" data-ar="الأحدث أولاً" data-en="Newest first">الأحدث أولاً</option>
+      <option value="oldest" data-ar="الأقدم أولاً" data-en="Oldest first">الأقدم أولاً</option>
+    </select>
+    <strong id="results-count" class="results-count">0 نتيجة</strong>
+  </section>
+
+  <section class="news-section">
+    <div id="news-grid" class="news-grid"></div>
+  </section>
+
+  <section id="bookmarks-panel" class="bookmarks-panel" hidden>
+    <h2><span data-ar="المفضلة" data-en="Bookmarks">المفضلة</span> <span id="bk-badge" class="badge">0</span></h2>
+    <div id="bookmarks-list" class="bookmarks-list"></div>
+  </section>
+
+  <section class="comments-section">
+    <h2 data-ar="التعليقات" data-en="Comments">التعليقات</h2>
+    <form id="comment-form" class="comment-form">
+      <input id="comment-author" type="text" placeholder="اسمك" data-placeholder-ar="اسمك" data-placeholder-en="Your name">
+      <textarea id="comment-text" placeholder="اكتب تعليقك" data-placeholder-ar="اكتب تعليقك" data-placeholder-en="Write your comment"></textarea>
+      <button type="submit" data-ar="إضافة تعليق" data-en="Add Comment">إضافة تعليق</button>
+    </form>
+    <div id="comments-list" class="comments-list"></div>
+  </section>
+</main>
+
+<footer class="footer" id="contact">
+  <div>
+    <img src="https://www.zueitina.com.ly/images/logo-en.png" alt="Zueitina Oil Company logo">
+    <p data-ar="شركة الزويتينة للنفط - المركز الرئيسي، شارع سيدي عيسى، الظهرة، طرابلس، ليبيا."
+       data-en="Zueitina Oil Company – HQ, Sidi Issa St., Al-Dahra, Tripoli, Libya.">شركة الزويتينة للنفط - المركز الرئيسي، شارع سيدي عيسى، الظهرة، طرابلس، ليبيا.</p>
+  </div>
+  <div>
+    <h2 data-ar="تواصل معنا" data-en="Get in Touch">تواصل معنا</h2>
+    <p>+218-21-444-0956</p>
+    <p>+218-21-333-9109</p>
+    <p>info@zueitina.com</p>
+  </div>
+  <div>
+    <h2 data-ar="روابط" data-en="Links">روابط</h2>
+    <a href="../index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+    <a href="news.html" data-ar="الأخبار" data-en="News">الأخبار</a>
+    <a href="flights.html" data-ar="دليل الرحلات" data-en="Flights Directory">دليل الرحلات</a>
+    <a href="port.html" data-ar="ميناء الزويتينة" data-en="Zueitina Port">ميناء الزويتينة</a>
+    <a href="projects.html" data-ar="المشاريع" data-en="Projects">المشاريع</a>
+  </div>
+</footer>
+<script src="../js/shared.js"></script>
+<script src="../js/news.js"></script>
+</body>
+</html>

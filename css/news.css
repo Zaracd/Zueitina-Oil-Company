@@ -1,0 +1,314 @@
+/* ============================================================
+   NEWS.CSS — Zueitina Oil Company
+   Styles specific to the full News page (news.html)
+   ============================================================ */
+
+/* ── PAGE HERO ──────────────────────────────────────────────── */
+.page-hero {
+  padding: clamp(48px,8vw,96px) clamp(18px,5vw,72px) clamp(40px,6vw,72px);
+  background:
+    radial-gradient(circle at 20% 50%, rgba(66,217,255,.14), transparent 40%),
+    linear-gradient(135deg, var(--blue-950), var(--blue-900) 64%, #0b2860);
+  color: #fff;
+}
+.page-hero .eyebrow { color: var(--cyan); }
+.page-hero h1 {
+  font-size: clamp(2rem,5vw,4rem);
+  margin-bottom: .5em;
+  background: linear-gradient(90deg, #fff 40%, var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-hero p { color: rgba(255,255,255,.78); max-width: 600px; }
+
+/* ── SEARCH & FILTER BAR ────────────────────────────────────── */
+.news-controls {
+  position: sticky; top: 82px; z-index: 10;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+  padding: 16px clamp(18px,5vw,72px);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.search-wrap {
+  position: relative; flex: 1; min-width: 220px;
+}
+.search-wrap svg {
+  position: absolute;
+  top: 50%; right: 14px;
+  transform: translateY(-50%);
+  color: var(--text-muted); pointer-events: none;
+  width: 18px; height: 18px;
+}
+.search-input {
+  width: 100%; min-height: 46px;
+  padding: 10px 44px 10px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 999px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font: inherit; font-size: .96rem;
+  transition: border-color var(--transition), background var(--transition);
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--blue-600);
+  box-shadow: 0 0 0 3px rgba(27,116,209,.18);
+}
+
+.filter-group {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit; font-size: .86rem; font-weight: 900;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-btn:hover {
+  border-color: var(--blue-600); color: var(--blue-600);
+}
+.filter-btn.active {
+  background: var(--blue-600);
+  border-color: var(--blue-600);
+  color: #fff;
+}
+
+.results-count {
+  margin-inline-start: auto;
+  color: var(--text-muted);
+  font-size: .86rem; font-weight: 900;
+  white-space: nowrap;
+}
+
+/* ── SORT SELECT ────────────────────────────────────────────── */
+.sort-select {
+  min-height: 46px; padding: 8px 36px 8px 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 999px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font: inherit; font-size: .86rem; font-weight: 900;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23657284' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 14px center;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+.sort-select:focus { outline: none; border-color: var(--blue-600); }
+
+/* ── NEWS GRID (Full page) ──────────────────────────────────── */
+.news-section {
+  padding: clamp(40px,6vw,80px) clamp(18px,5vw,72px);
+  background: var(--ice);
+  transition: background var(--transition);
+  min-height: 60vh;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 22px;
+}
+
+/* Full news card */
+.news-full-card {
+  display: flex; flex-direction: column;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: transform 220ms ease, box-shadow 220ms ease,
+              background var(--transition), border-color var(--transition);
+}
+.news-full-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgba(6,20,47,.14);
+}
+.news-full-card .card-thumb {
+  height: 180px;
+  background: linear-gradient(135deg, var(--blue-900), var(--blue-800));
+  position: relative; overflow: hidden;
+}
+.news-full-card .card-thumb::after {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(6,20,47,.52), transparent 60%);
+  content: "";
+}
+.card-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 300ms ease;
+}
+.news-full-card:hover .card-thumb img { transform: scale(1.04); }
+
+.card-category {
+  position: absolute; top: 14px; right: 14px; z-index: 1;
+  padding: 4px 12px;
+  background: rgba(27,116,209,.82);
+  color: #fff; border-radius: 999px;
+  font-size: .76rem; font-weight: 900;
+  backdrop-filter: blur(6px);
+}
+.card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.card-meta {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px;
+}
+.card-meta time { color: var(--blue-600); font-size: .84rem; font-weight: 900; }
+.card-body h3 { font-size: 1.05rem; line-height: 1.4; margin-bottom: 10px; }
+.card-body p  { color: var(--text-muted); font-size: .92rem; margin: 0 0 14px; }
+.card-footer  {
+  margin-top: auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.card-footer a {
+  color: var(--blue-600); font-weight: 900; font-size: .88rem;
+}
+.card-footer a:hover { color: var(--cyan); }
+
+/* BOOKMARK inside full card */
+.card-bookmark {
+  background: none; border: none; cursor: pointer;
+  padding: 4px; border-radius: 6px;
+  color: var(--text-muted);
+  transition: color var(--transition), background var(--transition);
+}
+.card-bookmark:hover { color: var(--oil); background: rgba(212,154,53,.12); }
+.card-bookmark.active { color: var(--oil); }
+.card-bookmark svg { width: 18px; height: 18px; display: block; }
+
+/* NO RESULTS */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center; padding: 64px 24px;
+  color: var(--text-muted);
+}
+.no-results svg { width: 56px; height: 56px; opacity: .4; margin-bottom: 16px; }
+
+/* BOOKMARKS PANEL */
+.bookmarks-panel {
+  padding: clamp(32px,5vw,64px) clamp(18px,5vw,72px);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  transition: background var(--transition), border-color var(--transition);
+}
+.bookmarks-panel h2 {
+  font-size: 1.5rem; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.bookmarks-panel h2 .badge {
+  min-width: 28px; height: 28px;
+  background: var(--blue-600); color: #fff;
+  border-radius: 999px; font-size: .82rem;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.bookmarks-list {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.bookmark-item {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; padding: 14px 18px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: background var(--transition);
+}
+.bookmark-item span {
+  flex: 1; font-size: .94rem; line-height: 1.4;
+}
+.bookmark-item time { color: var(--blue-600); font-size: .82rem; font-weight: 900; white-space: nowrap; }
+.remove-bookmark {
+  background: none; border: none; cursor: pointer; padding: 4px;
+  color: var(--text-muted); border-radius: 6px;
+  transition: color var(--transition), background var(--transition);
+}
+.remove-bookmark:hover { color: #e05555; background: rgba(224,85,85,.10); }
+.remove-bookmark svg { width: 16px; height: 16px; display: block; }
+.bookmarks-empty { color: var(--text-muted); font-size: .96rem; }
+
+/* ── COMMENTS SECTION ───────────────────────────────────────── */
+.comments-section {
+  padding: clamp(32px,5vw,64px) clamp(18px,5vw,72px);
+  background: var(--ice);
+  transition: background var(--transition);
+}
+.comments-section h2 { font-size: 1.5rem; margin-bottom: 24px; }
+
+.comment-form {
+  display: grid; gap: 12px; max-width: 680px;
+  margin-bottom: 36px;
+}
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font: inherit; font-size: .96rem;
+  transition: border-color var(--transition), background var(--transition);
+}
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none; border-color: var(--blue-600);
+  box-shadow: 0 0 0 3px rgba(27,116,209,.16);
+}
+.comment-form textarea { min-height: 100px; resize: vertical; }
+.comment-form button {
+  justify-self: start;
+  padding: 12px 32px;
+  background: linear-gradient(135deg, var(--blue-800), var(--blue-600));
+  color: #fff; border: none; border-radius: 999px;
+  font: inherit; font-weight: 900; cursor: pointer;
+  transition: opacity var(--transition);
+}
+.comment-form button:hover { opacity: .88; }
+
+.comments-list { display: flex; flex-direction: column; gap: 14px; }
+.comment-item {
+  padding: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: background var(--transition), border-color var(--transition);
+}
+.comment-header {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 10px;
+  margin-bottom: 8px;
+}
+.comment-author { font-weight: 900; color: var(--blue-600); }
+.comment-date   { color: var(--text-muted); font-size: .82rem; }
+.comment-text   { color: var(--text-primary); font-size: .96rem; margin: 0; }
+.delete-comment {
+  background: none; border: none; cursor: pointer; padding: 4px;
+  color: var(--text-muted); border-radius: 6px;
+  transition: color var(--transition);
+}
+.delete-comment:hover { color: #e05555; }
+.delete-comment svg { width: 15px; height: 15px; display: block; }
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .news-controls { top: 0; }
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .news-grid { grid-template-columns: 1fr; }
+  .filter-group { gap: 6px; }
+  .filter-btn { padding: 6px 12px; font-size: .8rem; }
+  .news-controls { gap: 8px; }
+}
