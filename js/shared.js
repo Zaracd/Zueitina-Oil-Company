@@ -308,7 +308,7 @@ const NEWS_DATA = [
     titleEn:  'Field visit to oil fields and ports operated by Zueitina Oil Company.',
     summaryAr:'زيارة ميدانية لمتابعة سير العمل والوقوف على الظروف التشغيلية والفنية والإدارية في الحقول والموانئ.',
     summaryEn:'A field visit to monitor workflows and review operational, technical and administrative conditions across fields and ports.',
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80" ,
+    image: 'https://ar.libyaobserver.ly/sites/default/files/styles/wide/public/2025-12/%D8%A7%D9%84%D8%AD%D9%82%D9%84%20103.jpg?itok=IqSbeHqu' ,
     url:      'https://www.zueitina.com.ly/en/item/476-field-visit-by-the-chairman-and-members-of-the-operator-management-committee-to-the-oil-fields-and-ports-operated-by-zueitina-oil-company',
   },
   {
