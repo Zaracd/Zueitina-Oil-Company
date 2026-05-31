@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>شركة الزويتينة للنفط | Zueitina Oil Company</title>
+  <link rel="icon" type="image/svg+xml" href="assets/site-icon.svg">
+
+
+  <!--
+    ╔══════════════════════════════════════════════════════════╗
+    ║  index.html — Home Page                                  ║
+    ║  Upgrade summary:                                        ║
+    ║  • Dark mode toggle (header)                             ║
+    ║  • Language switcher AR ↔ EN (header)                    ║
+    ║  • SVG oil-rig / barrel hero animation (replaces .oil-   ║
+    ║    motion div)                                           ║
+    ║  • Latest News widget with bookmark + "See all" link     ║
+    ║  • Login section removed → now login.html                ║
+    ╚══════════════════════════════════════════════════════════╝
+  -->
+
+  <!-- Apply theme before paint to prevent flash -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('zoc-theme');
+      if(t === 'dark') document.documentElement.setAttribute('data-theme','dark');
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="شركة الزويتينة للنفط">
+      <img src="https://www.zueitina.com.ly/images/logo-en.png" alt="Zueitina Oil Company logo">
+      <span>
+        <strong>شركة الزويتينة للنفط</strong>
+        <small>Zueitina Oil Company</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="القائمة الرئيسية">
+      <a href="#about"      data-i18n="nav-about">من نحن</a>
+      <a href="#operations" data-i18n="nav-operations">العمليات</a>
+      <a href="#market"     data-i18n="nav-market">أسعار النفط</a>
+      <a href="pages/news.html" data-i18n="nav-news">الأخبار</a>
+      <a href="pages/flights.html" data-ar="دليل الرحلات" data-en="Flights Directory">دليل الرحلات</a>
+      <a href="pages/port.html" data-ar="ميناء الزويتينة" data-en="Zueitina Port">ميناء الزويتينة</a>
+      <a href="pages/projects.html" data-ar="المشاريع" data-en="Projects">المشاريع</a>
+      <a href="#services"   data-i18n="nav-services">الخدمات</a>
+      <a href="pages/login.html" data-i18n="nav-login">تسجيل الدخول</a>
+      <a href="#contact"    data-i18n="nav-contact">اتصل بنا</a>
+    </nav>
+
+    <!-- Theme + Language controls -->
+    <div class="header-controls">
+      <!-- Dark mode toggle -->
+      <button class="theme-toggle"
+              aria-label="تفعيل الوضع الداكن"
+              title="Dark mode"></button>
+
+      <!-- Language switch -->
+      <button class="lang-toggle"
+              aria-label="Switch to English">EN</button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero">
+      <div class="hero-art" aria-hidden="true"></div>
+
+      <!--
+        ┌──────────────────────────────────────────────┐
+        │  SVG OIL ANIMATION  (replaces old .oil-motion)│
+        │  Floating oil barrel with dripping crude,     │
+        │  glowing ring, and rising smoke/flame.        │
+        └──────────────────────────────────────────────┘
+      -->
+      <div class="oil-scene" aria-hidden="true">
+        <svg viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <!-- Barrel body gradient -->
+            <linearGradient id="barrelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#1a2530"/>
+              <stop offset="45%"  stop-color="#0d1a24"/>
+              <stop offset="100%" stop-color="#d49a35" stop-opacity="0.6"/>
+            </linearGradient>
+            <!-- Oil shine -->
+            <linearGradient id="oilShine" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stop-color="#42d9ff" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#d49a35" stop-opacity="0.1"/>
+            </linearGradient>
+            <!-- Glow filter -->
+            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="6" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Drop shadow -->
+            <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#d49a35" flood-opacity="0.3"/>
+            </filter>
+          </defs>
+
+          <!-- ── Glow ring beneath barrel ── -->
+          <ellipse class="svg-glow-ring"
+                   cx="140" cy="260" rx="88" ry="20"
+                   fill="#d49a35" opacity="0.5" filter="url(#glow)"/>
+
+          <!-- ── Barrel body ── -->
+          <g class="svg-barrel" transform-origin="140 200" filter="url(#dropShadow)">
+            <!-- Main body -->
+            <rect x="72" y="130" width="136" height="148" rx="14" ry="14"
+                  fill="url(#barrelGrad)"/>
+            <!-- Shine overlay -->
+            <rect x="72" y="130" width="136" height="148" rx="14" ry="14"
+                  fill="url(#oilShine)" opacity="0.6"/>
+            <!-- Top cap -->
+            <ellipse cx="140" cy="130" rx="68" ry="18"
+                     fill="#223040"/>
+            <!-- Bottom cap -->
+            <ellipse cx="140" cy="278" rx="68" ry="18"
+                     fill="#111c26"/>
+            <!-- Barrel bands -->
+            <rect x="72" y="166" width="136" height="9" rx="4"
+                  fill="#42d9ff" opacity="0.35"/>
+            <rect x="72" y="243" width="136" height="9" rx="4"
+                  fill="#42d9ff" opacity="0.35"/>
+            <!-- Center label plate -->
+            <rect x="96" y="185" width="88" height="46" rx="6"
+                  fill="rgba(255,255,255,0.07)" stroke="#42d9ff" stroke-width="1" stroke-opacity="0.4"/>
+            <!-- ZOC text on barrel -->
+            <text x="140" y="203" text-anchor="middle"
+                  font-family="Tahoma, Arial, sans-serif" font-size="11" font-weight="900"
+                  fill="#42d9ff" opacity="0.9">ZOC</text>
+            <text x="140" y="220" text-anchor="middle"
+                  font-family="Tahoma, Arial, sans-serif" font-size="7.5"
+                  fill="rgba(255,255,255,0.6)">CRUDE OIL</text>
+            <!-- Bung hole -->
+            <circle cx="140" cy="130" r="9" fill="#1a2c3a" stroke="#42d9ff" stroke-width="1.2" stroke-opacity="0.6"/>
+            <circle cx="140" cy="130" r="4" fill="#d49a35" opacity="0.8"/>
+          </g>
+
+          <!-- ── Pipe / spigot on top ── -->
+          <rect x="134" y="100" width="12" height="30" rx="4" fill="#1e3045"/>
+          <rect x="122" y="96" width="36" height="10" rx="5" fill="#2a4060"/>
+          <rect x="125" y="88" width="8" height="14" rx="3" fill="#1e3045"/>
+
+          <!-- ── Dripping oil drops ── -->
+          <!-- Drop 1 -->
+          <ellipse class="svg-drop-1" cx="131" cy="92" rx="3.5" ry="5"
+                   fill="#d49a35" opacity="0.9"/>
+          <!-- Drop 2 -->
+          <ellipse class="svg-drop-2" cx="149" cy="90" rx="3" ry="4.5"
+                   fill="#d49a35" opacity="0.8"/>
+          <!-- Drop 3 -->
+          <ellipse class="svg-drop-3" cx="140" cy="88" rx="2.5" ry="4"
+                   fill="#c48820" opacity="0.7"/>
+
+          <!-- ── Oil puddle at base ── -->
+          <ellipse cx="140" cy="280" rx="72" ry="12"
+                   fill="#0a0a06" opacity="0.55"/>
+          <!-- Puddle shimmer -->
+          <ellipse cx="128" cy="278" rx="22" ry="4"
+                   fill="#d49a35" opacity="0.2"/>
+
+          <!-- ── Smoke puffs (rising) ── -->
+          <circle class="svg-smoke-1" cx="120" cy="78" r="9"
+                  fill="rgba(180,200,220,0.22)"/>
+          <circle class="svg-smoke-2" cx="158" cy="68" r="7"
+                  fill="rgba(180,200,220,0.18)"/>
+
+          <!-- ── Flame on pipe ── -->
+          <g class="svg-flame" transform-origin="125 88">
+            <path d="M122 88 Q118 78 124 70 Q120 80 128 75 Q122 84 130 82 Q124 88 122 88Z"
+                  fill="#f0a020" opacity="0.82"/>
+            <path d="M122 88 Q120 82 124 76 Q122 82 126 80 Q122 86 122 88Z"
+                  fill="#ffe070" opacity="0.7"/>
+          </g>
+
+          <!-- ── Scan line (tech feel) ── -->
+          <rect class="svg-scan-line" x="72" y="130" width="136" height="2" rx="1"
+                fill="#42d9ff" opacity="0.45"/>
+        </svg>
+      </div>
+
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="hero-eyebrow">Zueitina Oil Company</p>
+        <h1 data-i18n="hero-h1">طاقة ليبية بخبرة تشغيلية تمتد من الحقول إلى ميناء الزويتينة.</h1>
+        <p data-i18n="hero-p">
+          تدير الشركة عمليات إنتاج وتصدير النفط الخام والغاز عبر منظومة تشغيلية تمتد من الحقول إلى الميناء،
+          مع التركيز على السلامة واستقرار الإمدادات وخدمة الاقتصاد الوطني.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="pages/news.html" data-i18n="hero-btn-news">آخر الأخبار</a>
+          <a class="button secondary" href="#services"    data-i18n="hero-btn-svc">الخدمات</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ MARKET TICKER ══════════════ -->
+    <section class="market-strip" aria-label="Global Oil Market Update">
+      <strong class="ticker-label" data-i18n="ticker-label">تحديث السوق العالمي</strong>
+      <div class="ticker-track" role="marquee" aria-live="off">
+        <div class="ticker-group">
+          <span>Zwitina Blend</span>
+          <span>Brent Crude Oil 100.58 USD</span>
+          <span>WTI Crude Oil 96.42 USD</span>
+          <span>Zwitina Blend ↑ +2.3%</span>
+        </div>
+        <div class="ticker-group" aria-hidden="true">
+          <span>Zwitina Blend</span>
+          <span>Brent Crude Oil 100.58 USD</span>
+          <span>WTI Crude Oil 96.42 USD</span>
+          <span>Zwitina Blend ↑ +2.3%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ ABOUT ══════════════ -->
+    <section class="section intro" id="about">
+      <div>
+        <p class="eyebrow" data-i18n="about-eyebrow">من نحن</p>
+        <h2 data-i18n="about-h2">شركة ليبية متخصصة في إنتاج وتصدير النفط الخام والغاز.</h2>
+        <small>About Zueitina Oil Company</small>
+      </div>
+      <p data-i18n="about-p">
+        تأسست شركة الزويتينة للنفط سنة 1986، وتدير أنشطة إنتاج الخام والمكثفات،
+        وتشغيل ميناء الزويتينة، وتوفير الغاز المسال للسوق المحلي عبر منظومة تشغيلية
+        تضم الحقول والميناء ومرافق الطاقة والتحلية.
+      </p>
+    </section>
+
+    <!-- ══════════════ STATS ══════════════ -->
+    <section class="stats" aria-label="أرقام رئيسية">
+      <article>
+        <strong>58K</strong>
+        <span data-i18n="stat-1-label">برميل يوميا إنتاج الشركة</span>
+      </article>
+      <article>
+        <strong>42 MW</strong>
+        <span data-i18n="stat-2-label">متوسط الطاقة بالحقول والميناء</span>
+      </article>
+      <article>
+        <strong>1,350</strong>
+        <span data-i18n="stat-3-label">متر مكعب يوميا من مياه التحلية</span>
+      </article>
+      <article>
+        <strong>10%</strong>
+        <span data-i18n="stat-4-label">تقريبا من صادرات ليبيا عبر الميناء</span>
+      </article>
+    </section>
+
+    <!-- ══════════════ OPERATIONS ══════════════ -->
+    <section class="section feature" id="operations">
+      <div class="feature-image" role="img" aria-label="Zueitina oil field operations"></div>
+      <div class="feature-copy">
+        <p class="eyebrow" data-i18n="ops-eyebrow">العمليات والمواقع</p>
+        <h2 data-i18n="ops-h2">من الحقول إلى ميناء الزويتينة النفطي.</h2>
+        <p>
+          يقع ميناء الزويتينة على خليج سرت، ويستخدم لتصدير الخام والغاز المسال.
+          وتصل طاقة تخزين الخام إلى حوالي 4.0 مليون برميل إضافة إلى مرافق النفتا
+          والبوتان والبروبان.
+        </p>
+        <div class="operation-list">
+          <article>
+            <h3 data-ar="الإنتاج" data-en="Production">الإنتاج</h3>
+            <p data-ar="عمليات يومية في الحقول مع برامج تطوير مستمرة."
+               data-en="Daily field operations with ongoing development programmes.">
+              عمليات يومية في الحقول مع برامج تطوير مستمرة.</p>
+          </article>
+          <article>
+            <h3 data-ar="خام Zueitina Blend" data-en="Zueitina Blend Crude">خام Zueitina Blend</h3>
+            <p data-ar="خام ليبي معروف في السوق العالمية منذ أواخر الستينيات."
+               data-en="A Libyan crude well-known on global markets since the late 1960s.">
+              خام ليبي معروف في السوق العالمية منذ أواخر الستينيات.</p>
+          </article>
+          <article>
+            <h3 data-ar="المناولة والتصدير" data-en="Handling & Export">المناولة والتصدير</h3>
+            <p data-ar="ميناء متخصص في تصدير الخام والغاز المسال."
+               data-en="A dedicated port for crude and LPG export.">
+              ميناء متخصص في تصدير الخام والغاز المسال.</p>
+          </article>
+          <article>
+            <h3 data-ar="التموين" data-en="Supply">التموين</h3>
+            <p data-ar="توفير الغاز المسال للسوق المحلي عبر شركة البريقة."
+               data-en="LPG supply to the domestic market via Brega Petroleum.">
+              توفير الغاز المسال للسوق المحلي عبر شركة البريقة.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ MARKET ══════════════ -->
+    <section class="section market" id="market">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="market-eyebrow">أسعار النفط</p>
+        <h2 data-i18n="market-h2">متابعة مؤشرات الخام في السوق العالمية.</h2>
+        <p data-i18n="market-p">تعرض هذه اللوحة أسعاراً إرشادية للخام لمساعدة الزائر على قراءة اتجاهات السوق ومقارنتها بخام Zueitina Blend.</p>
+      </div>
+      <div class="price-board">
+        <article class="price-card" data-market="ZW">
+          <span>Zueitina Blend</span><strong>--</strong><small data-i18n="market-zw-small">سعر إرشادي للتحديث</small>
+        </article>
+        <article class="price-card" data-market="BR">
+          <span>Brent Crude Oil</span><strong>$100.58</strong><small data-ar="دولار / برميل" data-en="USD / barrel">دولار / برميل</small>
+        </article>
+        <article class="price-card" data-market="WT">
+          <span>WTI Crude Oil</span><strong>$96.42</strong><small data-ar="دولار / برميل" data-en="USD / barrel">دولار / برميل</small>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════ PROJECTS ══════════════ -->
+    <section class="section projects" id="projects">
+      <div class="section-heading">
+        <p class="eyebrow"
+           data-ar="المشاريع والعطاءات" data-en="Projects & Tenders">المشاريع والعطاءات</p>
+        <h2 data-ar="إعلانات التأهيل والمشاريع في مكان واضح."
+            data-en="Prequalification announcements and projects in one clear place.">
+          إعلانات التأهيل والمشاريع في مكان واضح.</h2>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <span>01</span>
+          <h3 data-ar="نظام توزيع الطاقة EPSA (NC74)"
+              data-en="EPSA Power Distribution System (NC74)">نظام توزيع الطاقة EPSA (NC74)</h3>
+          <p data-ar="مشروع ظاهر ضمن أخبار الشركة ويخدم تطوير البنية التشغيلية."
+             data-en="A project featured in company news serving operational infrastructure development.">
+            مشروع ظاهر ضمن أخبار الشركة ويخدم تطوير البنية التشغيلية.</p>
+        </article>
+        <article class="card">
+          <span>02</span>
+          <h3 data-ar="استعادة مرافق تخزين Fidda"
+              data-en="Fidda Storage Facilities Restoration">استعادة مرافق تخزين Fidda</h3>
+          <p data-ar="إعلانات التأهيل المسبق وملفات المشاركة في العطاءات الفنية."
+             data-en="Prequalification announcements and technical tender participation files.">
+            إعلانات التأهيل المسبق وملفات المشاركة في العطاءات الفنية.</p>
+        </article>
+        <article class="card">
+          <span>03</span>
+          <h3 data-ar="العقود والمستندات" data-en="Contracts & Documents">العقود والمستندات</h3>
+          <p data-ar="متابعة العقود والمستندات ومواعيد التقديم وشروط المشاركة."
+             data-en="Follow contracts, documents, submission dates and participation requirements.">
+            متابعة العقود والمستندات ومواعيد التقديم وشروط المشاركة.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════ HSE ══════════════ -->
+    <section class="section hse" id="hse">
+      <div class="section-heading">
+        <p class="eyebrow"
+           data-ar="الصحة والسلامة والبيئة"
+           data-en="Health, Safety & Environment">الصحة والسلامة والبيئة</p>
+        <h2 data-ar="تشغيل مسؤول يحمي العاملين والمنشآت والبيئة."
+            data-en="Responsible operations protecting people, facilities, and the environment.">
+          تشغيل مسؤول يحمي العاملين والمنشآت والبيئة.</h2>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <span>HSE</span>
+          <h3 data-ar="إدارة المخاطر" data-en="Risk Management">إدارة المخاطر</h3>
+          <p data-ar="متابعة مخاطر الصحة والسلامة للعاملين والمقاولين في المواقع."
+             data-en="Tracking health and safety risks for personnel and contractors on site.">
+            متابعة مخاطر الصحة والسلامة للعاملين والمقاولين في المواقع.</p>
+        </article>
+        <article class="card">
+          <span>ENV</span>
+          <h3 data-ar="حماية البيئة" data-en="Environmental Protection">حماية البيئة</h3>
+          <p data-ar="تقليل التأثير البيئي وإدارة المخلفات والاستجابة للطوارئ."
+             data-en="Minimising environmental impact, waste management, and emergency response.">
+            تقليل التأثير البيئي وإدارة المخلفات والاستجابة للطوارئ.</p>
+        </article>
+        <article class="card">
+          <span>CPR</span>
+          <h3 data-ar="الجاهزية الطبية" data-en="Medical Readiness">الجاهزية الطبية</h3>
+          <p data-ar="ورش إسعاف وإنعاش قلبي ضمن برامج التدريب الميداني."
+             data-en="First aid and CPR workshops as part of field training programmes.">
+            ورش إسعاف وإنعاش قلبي ضمن برامج التدريب الميداني.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════ LATEST NEWS WIDGET ══════════════ -->
+    <!--
+      This is the HOME PAGE widget — a curated summary.
+      Full browsing → pages/news.html
+    -->
+    <section class="section news" id="news">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="news-eyebrow">الأخبار</p>
+        <h2 data-i18n="news-h2">أخبار شهر مايو 2026.</h2>
+        <p data-ar="تم ترتيب الأخبار في بطاقات واضحة مع التاريخ والعنوان ورابط قراءة."
+           data-en="News arranged in clear cards with date, headline, and read link.">
+          تم ترتيب الأخبار في بطاقات واضحة مع التاريخ والعنوان ورابط قراءة.</p>
+      </div>
+
+      <!-- Widget cards (static, matches original layout) -->
+      <div class="news-layout">
+        <article class="news-card lead">
+          <time datetime="2026-05-07"
+                data-ar="الخميس، 07 مايو 2026"
+                data-en="Thursday, May 7, 2026">الخميس، 07 مايو 2026</time>
+          <h3 data-ar="صيانة مضخة مياه البحر بميناء الزويتينة النفطي لتعزيز استقرار عمليات معمل الغاز."
+              data-en="Maintenance of seawater pump at Zueitina Oil Port to enhance gas plant stability.">
+            صيانة مضخة مياه البحر بميناء الزويتينة النفطي لتعزيز استقرار عمليات معمل الغاز.</h3>
+          <a href="pages/news.html"
+             data-ar="اقرأ المزيد" data-en="Read more">اقرأ المزيد</a>
+        </article>
+
+        <article class="news-card">
+          <time datetime="2026-05-07"
+                data-ar="الخميس، 07 مايو 2026"
+                data-en="Thursday, May 7, 2026">الخميس، 07 مايو 2026</time>
+          <h3 data-ar="رئيس المؤسسة الوطنية للنفط يشيد بنجاح شركة الزويتينة في مضاعفة إنتاجها."
+              data-en="NOC chairman praises Zueitina for successfully doubling its production.">
+            رئيس المؤسسة الوطنية للنفط يشيد بنجاح شركة الزويتينة في مضاعفة إنتاجها.</h3>
+          <a href="pages/news.html"
+             data-ar="اقرأ المزيد" data-en="Read more">اقرأ المزيد</a>
+        </article>
+
+        <article class="news-card">
+          <time datetime="2026-05-05"
+                data-ar="الثلاثاء، 05 مايو 2026"
+                data-en="Tuesday, May 5, 2026">الثلاثاء، 05 مايو 2026</time>
+          <h3 data-ar="لرفع الجاهزية الطبية.. ورشة عمل حول الإنعاش القلبي CPR بمواقع الشركة."
+              data-en="To raise medical readiness: CPR workshop held at company sites.">
+            لرفع الجاهزية الطبية.. ورشة عمل حول الإنعاش القلبي CPR بمواقع الشركة.</h3>
+          <a href="pages/news.html"
+             data-ar="اقرأ المزيد" data-en="Read more">اقرأ المزيد</a>
+        </article>
+
+        <article class="news-card">
+          <time datetime="2026-05-05"
+                data-ar="الثلاثاء، 05 مايو 2026"
+                data-en="Tuesday, May 5, 2026">الثلاثاء، 05 مايو 2026</time>
+          <h3 data-ar="تعزيز الإنتاج وتطوير الكوادر الفنية في صدارة الاجتماع الدوري الشهري للشركة."
+              data-en="Boosting production and developing technical staff tops the monthly meeting.">
+            تعزيز الإنتاج وتطوير الكوادر الفنية في صدارة الاجتماع الدوري الشهري للشركة.</h3>
+          <a href="pages/news.html"
+             data-ar="اقرأ المزيد" data-en="Read more">اقرأ المزيد</a>
+        </article>
+      </div>
+
+      <!-- "Browse all news" CTA -->
+      <div class="news-widget-footer">
+        <a class="button primary" href="pages/news.html" data-i18n="news-more-btn">
+          استعرض جميع الأخبار
+        </a>
+      </div>
+    </section>
+
+    <!-- ══════════════ SERVICES ══════════════ -->
+    <section class="section services" id="services">
+      <div class="section-heading">
+        <p class="eyebrow"
+           data-ar="الخدمات والروابط" data-en="Services & Links">الخدمات والروابط</p>
+        <h2 data-ar="روابط مهمة للموظفين والشركاء والزوار."
+            data-en="Key links for employees, partners, and visitors.">
+          روابط مهمة للموظفين والشركاء والزوار.</h2>
+        <p data-ar="تم تجميع الروابط الأساسية في بطاقات عملية وواضحة."
+           data-en="Essential links gathered in practical, clear cards.">
+          تم تجميع الروابط الأساسية في بطاقات عملية وواضحة.</p>
+      </div>
+      <div class="gateway-grid">
+        <a class="gateway-card" href="pages/login.html">
+          <span>Email</span>
+          <strong data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</strong>
+          <small data-ar="دخول الموظفين إلى البريد الرسمي."
+                 data-en="Employee access to official email.">دخول الموظفين إلى البريد الرسمي.</small>
+        </a>
+        <a class="gateway-card" href="pages/flights.html">
+          <span>Flights</span>
+          <strong data-ar="دليل رحلات المواقع" data-en="Site Flights Directory">دليل رحلات المواقع</strong>
+          <small data-ar="جداول الرحلات الخاصة بمواقع العمل."
+                 data-en="Flight schedules for work sites.">جداول الرحلات الخاصة بمواقع العمل.</small>
+        </a>
+        <a class="gateway-card" href="pages/port.html">
+          <span>Port</span>
+          <strong data-ar="ميناء الزويتينة" data-en="Zueitina Port">ميناء الزويتينة</strong>
+          <small data-ar="معلومات الميناء والتخزين والمناولة."
+                 data-en="Port, storage, and handling information.">معلومات الميناء والتخزين والمناولة.</small>
+        </a>
+        <a class="gateway-card" href="pages/projects.html">
+          <span>Bids</span>
+          <strong data-ar="المشاريع والعطاءات" data-en="Projects & Bids">المشاريع والعطاءات</strong>
+          <small data-ar="إعلانات التأهيل والمستندات."
+                 data-en="Prequalification announcements and documents.">إعلانات التأهيل والمستندات.</small>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer" id="contact">
+    <div>
+      <img src="https://www.zueitina.com.ly/images/logo-en.png" alt="Zueitina Oil Company logo">
+      <p data-ar="شركة الزويتينة للنفط - المركز الرئيسي، شارع سيدي عيسى، الظهرة، طرابلس، ليبيا."
+         data-en="Zueitina Oil Company – HQ, Sidi Issa St., Al-Dahra, Tripoli, Libya.">
+        شركة الزويتينة للنفط - المركز الرئيسي، شارع سيدي عيسى، الظهرة، طرابلس، ليبيا.</p>
+    </div>
+    <div>
+      <h2 data-i18n="footer-contact-h">تواصل معنا</h2>
+      <p>+218-21-444-0956</p>
+      <p>+218-21-333-9109</p>
+      <p><a href="pages/login.html">info@zueitina.com</a></p>
+    </div>
+    <div>
+      <h2 data-i18n="footer-links-h">روابط</h2>
+      <a href="#about"      data-i18n="nav-about">من نحن</a>
+      <a href="#operations" data-i18n="nav-operations">العمليات</a>
+      <a href="pages/news.html" data-i18n="nav-news">الأخبار</a>
+      <a href="pages/flights.html" data-ar="دليل الرحلات" data-en="Flights Directory">دليل الرحلات</a>
+      <a href="pages/port.html" data-ar="ميناء الزويتينة" data-en="Zueitina Port">ميناء الزويتينة</a>
+      <a href="pages/projects.html" data-ar="المشاريع" data-en="Projects">المشاريع</a>
+      <a href="#services"   data-i18n="nav-services">الخدمات</a>
+    </div>
+  </footer>
+
+  <!-- Scripts: shared must come first -->
+  <script src="js/shared.js"></script>
+
+</body>
+</html>
