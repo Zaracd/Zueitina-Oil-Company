@@ -97,6 +97,8 @@ const TRANSLATIONS = {
   /* ── Operations ── */
   'ops-eyebrow':    { ar: 'العمليات والمواقع',     en: 'Operations & Sites' },
   'ops-h2':         { ar: 'من الحقول إلى ميناء الزويتينة النفطي.', en: 'From the fields to Zueitina Oil Port.' },
+  'new-text':       { ar: ' يقع ميناء الزويتينة على خليج سرت، ويستخدم لتصدير الخام والغاز المسال. وتصل طاقة تخزين الخام إلى حوالي 4.0 مليون برميل إضافة إلى مرافق النفتا والبوتان والبروبان.',                en: ' The port of Zueitina is located on the Gulf of Sirte and is used for the export of crude oil and liquefied natural gas. It has a crude oil storage capacity of approximately 4.0 million barrels, as well as facilities for naphtha, butane and propane.' },
+  
   /* ── News (home widget) ── */
   'news-eyebrow':   { ar: 'الأخبار',              en: 'News' },
   'news-h2':        { ar: 'أخبار شهر مايو 2026.', en: 'May 2026 News.' },
