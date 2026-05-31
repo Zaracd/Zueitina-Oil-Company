@@ -1251,3 +1251,24 @@ html[lang="en"] .header-controls {
     font-weight: 800;
   }
 }
+
+/* === Force dark navbar in LIGHT mode only === */
+html:not([data-theme="dark"]) {
+  --header-bg: rgba(9,20,45,0.96);
+  --border: rgba(66,217,255,0.10);
+}
+html:not([data-theme="dark"]) .main-nav {
+  color: #c7e0ff;
+}
+html:not([data-theme="dark"]) .brand strong,
+html:not([data-theme="dark"]) .brand small {
+  color: #c7e0ff !important;
+}
+html:not([data-theme="dark"]) .lang-toggle {
+  color: #c7e0ff;
+  border-color: rgba(66,217,255,0.25);
+}
+html:not([data-theme="dark"]) .lang-toggle:hover {
+  background: var(--blue-600);
+  color: #fff;
+}
